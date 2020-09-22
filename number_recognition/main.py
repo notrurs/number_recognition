@@ -51,7 +51,7 @@ def train_model(model, trainset):
             X, y = data  # X is the batch of features, y is the batch of targets.
             model.zero_grad()  # sets gradients to 0 before loss calc. You will do this likely every step.
             output = model(X.view(-1, 784))  # pass in the reshaped batch (recall they are 28x28 atm)
-            loss = F.nll_loss(output, y)  # calc and grab the loss value
+            loss = loss_function(output, y)  # calc and grab the loss value
             loss.backward()  # apply this loss backwards thru the network's parameters
             optimizer.step()  # attempt to optimize weights to account for loss/gradients
         print(loss)  # print loss. We hope loss (a measure of wrong-ness) declines!
